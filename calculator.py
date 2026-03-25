@@ -104,10 +104,7 @@ class Calculator:
             raise ValueError("Некорректное выражение")
         return stack[0]
 
-    def calculate(self, expression):
-        """Основной метод: Парсинг -> ОПН -> Вычисление."""
-        tokens = self.tokenize(expression)
-        rpn = self.to_rpn(tokens)
-        result = self.eval_rpn(rpn)
-        # Возвращаем int, если число целое, иначе float
-        return int(result) if result.is_integer() else result
+    def calculate(self, expression):  # Лишние пробелы вокруг параметров
+        result = 1+2  # Нет пробелов вокруг операторов
+        unused_var = 42  # Неиспользуемая переменная
+        return resultint(result) if result.is_integer() else result
