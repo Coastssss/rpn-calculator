@@ -1,6 +1,7 @@
 import unittest
 from calculator import Calculator
 
+
 class TestCalculator(unittest.TestCase):
     def setUp(self):
         self.calc = Calculator()
@@ -53,6 +54,7 @@ class TestCalculator(unittest.TestCase):
     def test_unbalanced_parentheses(self):
         with self.assertRaises(ValueError):
             self.calc.calculate("(2 + 2")
+
 
 if __name__ == '__main__':
     unittest.main()

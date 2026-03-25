@@ -1,5 +1,6 @@
 import operator
 
+
 class Calculator:
     def __init__(self):
         # 3 уровня приоритета:
@@ -48,7 +49,8 @@ class Calculator:
             elif token in self.operators:
                 while (operator_stack and
                        operator_stack[-1] != '(' and
-                       self.precedence[operator_stack[-1]] >= self.precedence[token]):
+                       self.precedence[operator_stack[-1]]
+                       >= self.precedence[token]):
                     output_queue.append(operator_stack.pop())
                 operator_stack.append(token)
             elif token == '(':
