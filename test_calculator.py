@@ -30,7 +30,7 @@ class TestCalculator(unittest.TestCase):
         # 2 * 3 ^ 2 должно быть 18 (2 * 9), а не 36 ((2*3)^2)
         self.assertEqual(self.calc.calculate("2 * 3 ^ 2"), 18)
 
-    def test_parentheses_override(self):
+    def test_parentheses_override(self): #проверка на скобки
         # (2 + 2) * 2 должно быть 8
         self.assertEqual(self.calc.calculate("(2 + 2) * 2"), 8)
 
@@ -40,7 +40,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calc.calculate("2 + (3 * 4) ^ 2 / 2 - 1"), 73)
 
     def test_rpn_conversion_simple(self):
-        # Проверка шага преобразования
+        # проверка шага преобразования
         tokens = self.calc.tokenize("1 + 2")
         rpn = self.calc.to_rpn(tokens)
         self.assertEqual(rpn, ['1', '2', '+'])
@@ -48,7 +48,7 @@ class TestCalculator(unittest.TestCase):
     def test_rpn_conversion_precedence(self):
         tokens = self.calc.tokenize("1 + 2 * 3")
         rpn = self.calc.to_rpn(tokens)
-        # Ожидаем: 1 2 3 * +
+        # ожидаем 1 2 3 * +
         self.assertEqual(rpn, ['1', '2', '3', '*', '+'])
 
     def test_unbalanced_parentheses(self):
