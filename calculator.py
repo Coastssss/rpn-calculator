@@ -40,14 +40,14 @@ class Calculator:
 
     def to_rpn(self, tokens):
         """Преобразует токены в Обратную Польскую Нотацию (ОПН)."""
-        output_queue = [] # итоговый список ОПН
-        operator_stack = [] # временный стек для операторов
+        output_queue = []  # итоговый список ОПН
+        operator_stack = []  # временный стек для операторов
 
         for token in tokens:
             if self._is_number(token):
-                output_queue.append(token) #число - сразу в рез
+                output_queue.append(token)  # число - сразу в рез
             elif token in self.operators:
-                # пока есть операторы с таким же илии выше приоритетом - в стек
+                # пока есть операторы с таким же или выше приоритетом - в стек
                 while (operator_stack and
                        operator_stack[-1] != '(' and
                        self.precedence[operator_stack[-1]]
@@ -57,13 +57,13 @@ class Calculator:
             elif token == '(':
                 operator_stack.append(token)
             elif token == ')':
-                #все из стека до откр скобки, ошибка если не было скобок
+                # все из стека до откр скобки, ошибка если не было скобок
                 while operator_stack and operator_stack[-1] != '(':
                     output_queue.append(operator_stack.pop())
                 if not operator_stack:
                     raise ValueError("Несбалансированные скобки")
                 operator_stack.pop()
-        #ошибка если скобки не закрыты, остатки из стека
+        # ошибка если скобки не закрыты, остатки из стека
         while operator_stack:
             top = operator_stack.pop()
             if top == '(':
@@ -90,20 +90,20 @@ class Calculator:
             '^': operator.pow
         }
 
-        for token in rpn_tokens: #число - в стек
+        for token in rpn_tokens:  # число - в стек
             if self._is_number(token):
                 stack.append(float(token))
             else:
-                if len(stack) < 2: #мин 2 числа в стеке
+                if len(stack) < 2:  # мин 2 числа в стеке
                     raise ValueError("Некорректное выражение")
                 b = stack.pop()
                 a = stack.pop()
-                if token == '/' and b == 0: #деление на ноль
+                if token == '/' and b == 0:  # деление на ноль
                     raise ZeroDivisionError("Деление на ноль")
                 result = ops[token](a, b)
                 stack.append(result)
 
-        if len(stack) != 1: #в конце должно быть 1 число в стеке - результат
+        if len(stack) != 1:  # в конце должно быть 1 число в стеке - результат
             raise ValueError("Некорректное выражение")
         return stack[0]
 

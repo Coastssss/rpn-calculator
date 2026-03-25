@@ -30,7 +30,7 @@ class TestCalculator(unittest.TestCase):
         # 2 * 3 ^ 2 должно быть 18 (2 * 9), а не 36 ((2*3)^2)
         self.assertEqual(self.calc.calculate("2 * 3 ^ 2"), 18)
 
-    def test_parentheses_override(self): #проверка на скобки
+    def test_parentheses_override(self):  # проверка на скобки
         # (2 + 2) * 2 должно быть 8
         self.assertEqual(self.calc.calculate("(2 + 2) * 2"), 8)
 
