@@ -1,6 +1,5 @@
 import operator
 
-
 class Calculator:
     def __init__(self):
         # 3 уровня приоритета:
@@ -59,7 +58,7 @@ class Calculator:
                     output_queue.append(operator_stack.pop())
                 if not operator_stack:
                     raise ValueError("Несбалансированные скобки")
-                operator_stack.pop()  # Удаляем '('
+                operator_stack.pop()
 
         while operator_stack:
             top = operator_stack.pop()
@@ -104,7 +103,12 @@ class Calculator:
             raise ValueError("Некорректное выражение")
         return stack[0]
 
-    def calculate(self, expression):  # Лишние пробелы вокруг параметров
-        result = 1+2  # Нет пробелов вокруг операторов
-        unused_var = 42  # Неиспользуемая переменная
-        return int(result) if result.is_integer() else result
+    def calculate(self, expression):
+        """Основной метод: Парсинг -> ОПН -> Вычисление."""
+        tokens = self.tokenize(expression)
+        rpn = self.to_rpn(tokens)
+        result = self.eval_rpn(rpn)
+        # Возвращаем int, если число целое, иначе float
+        if isinstance(result, float) and result.is_integer():
+            return int(result)
+        return result
