@@ -107,4 +107,4 @@ class Calculator:
     def calculate(self, expression):  # Лишние пробелы вокруг параметров
         result = 1+2  # Нет пробелов вокруг операторов
         unused_var = 42  # Неиспользуемая переменная
-        return resultint(result) if result.is_integer() else result
+        return int(result) if result.is_integer() else result
